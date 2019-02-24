@@ -1,0 +1,49 @@
+#top and bottom template, 
+
+def main():
+    top_template=open('templates/top.html').read()
+    bottom_template=open('templates/bottom.html').read()
+
+    
+  middle has index, bio, contacts
+  middle_template=open('templates/content_index.html').read()
+  index_html = top_template + middle_template + bottom_template
+  open("docs/index.html",'w+').write(index_html)
+
+  middle_template=open('templates/content_bio.html').read()
+  bio_html = top_template + middle_template + bottom_template
+  open("docs/bio.html",'w+').write(index_html)
+
+
+  middle_template=open('templates/content_contact.html').read()
+  contact_html = top_template + middle_template + bottom_template
+  open("docs/contact.html",'w+').write(index_html)
+
+#def main():
+
+    pages = [
+     {   
+         "filename": "content/index.html",
+         "output": "docs/index.html",
+         "title": "Index About Me",
+      }
+      {
+         "filename": "content/bio.html",
+         "output"; "docs/bio.html",
+         "title": "My bio",
+      }
+      {
+         "filename": "content/contact.html",
+         "output": "docs/contact.html",
+         "title": "My contact",
+       }
+     ]
+     
+for page in pages:
+    print(page)
+    page_title = page['title']
+    print(page_title)
+    
+ if__name__=="__main__"
+  main()
+    
