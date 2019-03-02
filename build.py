@@ -1,54 +1,33 @@
-#top and bottom template, 
+import os    
+import glob
+
+pages = []
+all_html_files = glob.glob("content/*.html")
 
 def main():
-#    top_template = open('templates/top.html').read()
-#    bottom_template=open('templates/bottom.html').read()
-#   template = open('templates/base.html').read()
-
-    
-    
-#    middle_template=open('templates/content_index.html').read()
-#    index_html = top_template + middle_template + bottom_template
-#    open("docs/index.html",'w+').write(index_html)
-
-#    middle_template=open('templates/content_bio.html').read()
-#    bio_html = top_template + middle_template + bottom_template
-#    open("docs/bio.html",'w+').write(index_html)
-
-
-#    middle_template=open('templates/content_contact.html').read()
-#    contact_html = top_template + middle_template + bottom_template
-#    open("docs/contact.html",'w+').write(index_html)
-
-    pages = [
-       {   
-           "filename": "content/index2.html",
-           "output": "docs/index.html",
-          "title": "Index About Me",
-       },
-       {
-          "filename": "content/bio2.html",
-          "output": "docs/bio.html",
-          "title": "My bio",
-       },
-       {
-         "filename": "content/contact2.html",
-          "output": "docs/contact.html",
-          "title": "My contact",
-      },
-    ]
-     
+    for html_file in all_html_files:
+        file_path = html_file
+        file_name = os.path.basename(file_path)
+        name_only, extension = os.path.splitext(file_name)
+        pages.append({
+            "filename": html_file,
+            "title": name_only,
+            "output": "docs/" + file_name,
+        })
     for page in pages:
-      print(page)
-      #page_title = page['title']
-      template = open('templates/base.html').read()
-      content_filename = page['filename']
-      print('this is content_filename', content_filename)
-      content = open(content_filename).read()
-      finished_page = template.replace("{{Darlacontent}}", content)
-      open(page['output'], 'w+').write(finished_page)
-      print('done')
-    
+        #print(pages)
+        from jinja2 import Template
+        index_html = open(page['filename']).read()
+        template_html = open("templates/base.html").read()
+        template = Template(template_html)
+        finished_page = template.render(
+            title=page['title'],
+            content=index_html,
+            pages = pages
+        )
+        open(page['output'], 'w+').write(finished_page)
+
+    print("done")
+
 if __name__ == "__main__":
     main()
-    

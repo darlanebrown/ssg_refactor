@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
 
- <a href="IResume.html>iResume.html</a>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Resume - Start Bootstrap Theme</title>
+  <title>{{ title }}</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
@@ -31,10 +29,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
+      {% for page in pages %}
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger"
+          <a href="{{ page.output }}">{{ page.title }}</a>
+        </li>
+      {% endfor %}
+
         
-        {{Darlacontent}}
+        {{content}}
         
  
   <!-- Bootstrap core JavaScript -->
